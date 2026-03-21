@@ -6,6 +6,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./nvidia.nix
     ];
 
   # Generation label
@@ -15,7 +16,7 @@
   time.hardwareClockInLocalTime = true;
   ### GRUB ###
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";# "/dev/nvme0n1";
+  boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.milk-theme.enable = true;
@@ -33,11 +34,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  # Hyprland
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #};
   # bspwm
   services.xserver = {
     enable = true;
@@ -72,21 +68,20 @@
   # obs portal
   xdg.portal = {
     enable = true;
-    wlr.enable = false;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   
   # obs
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins;
-    [ wlrobs ];
-  };  
-  
+    plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
+  };
+
   # virtual box
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  boot.kernelModules = [ "kvm-intel" "ch341" "usbserial" ];
+  boot.kernelModules = [ "kvm-intel" "ch341" "usbserial" ]; # rm intel later
 
   # docs
   documentation.doc.enable = false;
@@ -97,15 +92,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
-  
-  # Tuxedo-rs
-  #hardware.tuxedo-drivers.enable = false;
-
-  #hardware.tuxedo-rs = {
-  #  enable = true;
-  #  tailor-gui.enable = true;
-  #};
-
 
   # Env variables
   environment.variables = {
@@ -164,11 +150,6 @@
 
   # gamemode
   programs.gamemode.enable = true;
-
-  # glx
-  hardware.graphics = {
-    enable = true;
-  };
 
   environment.sessionVariables = {
     JAVA_HOME = "${pkgs.jdk17}";
