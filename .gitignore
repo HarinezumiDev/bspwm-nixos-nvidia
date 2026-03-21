@@ -1,0 +1,6 @@
+*.save
+*.lock
+*.nix.save
+old_flake.nix
+cosmic.nix
+*.old

@@ -1,0 +1,63 @@
+# =====================
+# GLOBAL
+# =====================
+title-text: ""
+desktop-image: "background.png"
+terminal-font: "Unifont Regular 16"
+
+# =====================
+# BOOT MENU
+# =====================
++ boot_menu {
+  left = 0
+  top = 0
+  width = 128
+  height = 64
+
+  item_height = 64
+  item_spacing = 0
+  item_padding = 0
+
+  item_font = "Unifont Regular 16"
+  item_color = "#000000"
+  selected_item_color = "#000000"
+
+  item_bg_color = ""
+  selected_item_bg_color = ""
+
+  # =====================
+  # ITEM LAYOUT
+  # =====================
+  + item {
+
+    # Windows icon (left)
+    + image {
+      left = 40
+      top = 24
+      width = 16
+      height = 16
+      file = "icons/win.png"
+      selected_file = "icons/win_sel.png"
+    }
+
+    # NixOS icon (right)
+    + image {
+      left = 72
+      top = 24
+      width = 16
+      height = 16
+      file = "icons/nixos.png"
+      selected_file = "icons/nixos_sel.png"
+    }
+
+    # invisible label (required)
+    + label {
+      left = 0
+      top = 0
+      width = 0
+      height = 0
+      text = "@LABEL@"
+    }
+  }
+}
+
