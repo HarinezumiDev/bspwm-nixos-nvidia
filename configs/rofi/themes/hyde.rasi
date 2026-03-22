@@ -1,0 +1,167 @@
+* {
+    bg0: #1a0505F2;
+    bg1: #2a0808E6;
+    bg2: #3a0a0aCC;
+    bg3: #4a0c0cB3;
+    fg0: #ffffffE6;
+    fg1: #ffccccCC;
+    fg2: #ffaaaaB3;
+    accent: #ff5555;
+    urgent: #ff3333;
+    
+    background-color: transparent;
+    text-color: @fg0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    location: center;
+    width: 45%;
+    height: 60%;
+    x-offset: 0;
+    y-offset: 0;
+    
+    background-color: @bg0;
+    border: 3px solid;
+    border-color: @accent;
+    border-radius: 16px;
+}
+
+mainbox {
+    padding: 20px;
+    spacing: 20px;
+    children: [inputbar, listview, mode-switcher];
+}
+
+mode-switcher {
+    spacing: 10px;
+    padding: 8px;
+    background-color: @bg1;
+    border-radius: 12px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: transparent;
+    text-color: @fg1;
+    border-radius: 8px;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: #000000;
+    font-weight: bold;
+}
+
+inputbar {
+    spacing: 12px;
+    padding: 12px 16px;
+    background-color: @bg1;
+    border-radius: 12px;
+    children: [prompt, entry];
+}
+
+prompt {
+    enabled: true;
+    padding: 12px 16px;
+    background-color: @accent;
+    text-color: #000000;
+    border-radius: 8px;
+    font-weight: bold;
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder: "Type to search...";
+    placeholder-color: @fg2;
+    text-color: @fg0;
+    background-color: transparent;
+    cursor: text;
+    vertical-align: 0.5;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    cycle: false;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    spacing: 8px;
+}
+
+element {
+    padding: 12px 16px;
+    spacing: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+    text-color: @fg1;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg1;
+}
+
+element normal.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element normal.active {
+    background-color: @bg2;
+    text-color: @accent;
+}
+
+element selected.normal {
+    background-color: @accent;
+    text-color: #000000;
+    font-weight: bold;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element selected.active {
+    background-color: @accent;
+    text-color: #000000;
+}
+
+element-icon {
+    size: 36px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    cursor: pointer;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+message {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: @bg1;
+}
+
+textbox {
+    padding: 8px 12px;
+    background-color: transparent;
+    text-color: @fg0;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+error-message {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: @urgent;
+    text-color: @fg0;
+}
