@@ -34,24 +34,14 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  # bspwm
   services.xserver = {
     enable = true;
-    displayManager.startx.enable = true;
+    displayManager.lightdm.enable = true;
     windowManager.bspwm.enable = true;
   };
-  
+
   services.udisks2.enable = true;
   services.gvfs.enable = true;
-
-  # ReGreet
-  programs.regreet.enable = true;
-  programs.regreet.settings = {
-    background = {
-      path = ./wallpapers/crimson2.jpg;
-      fit = "Cover";
-    };
-  };
   
   # Enable networking
   networking.networkmanager.enable = true;
@@ -64,18 +54,29 @@
     audio.enable = true;
     pulse.enable = true;
   };
+
+  security.rtkit.enable = true;
+
+  services.pipewire.extraConfig.pipewire."98-crackling-fix" = {
+    "context.properties" = {
+      "default.clock.quantum"     = 1024;
+      "default.clock.min-quantum" = 1024;
+      "default.clock.max-quantum" = 8192;
+    };
+  };
+
+  services.pipewire.wireplumber.extraConfig."99-crackling-fix" = {
+    "api.alsa.period-size" = 1024;
+    "api.alsa.headroom"    = 8192;
+  };
   
-  # obs portal
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   
-  # obs
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
   };
 
   # virtual box
